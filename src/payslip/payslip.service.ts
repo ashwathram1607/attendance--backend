@@ -6,7 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Payslip } from './payslip.entity';
-import { CreatePayslipDto } from './dto/create-payslip.dto';
+import { CreatePayslipDto } from './dto/create-payslip.dto'
 
 @Injectable()
 export class PayslipService {
