@@ -9,7 +9,6 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      'https://attendance-snowy-alpha.vercel.app', // ✅ correct domain
       'http://localhost:3000', // for local dev
       'https://attendance-main-93xz.vercel.app',
       
