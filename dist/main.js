@@ -42,7 +42,6 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors({
         origin: [
-            'https://attendance-snowy-alpha.vercel.app',
             'http://localhost:3000',
             'https://attendance-main-93xz.vercel.app',
         ],
