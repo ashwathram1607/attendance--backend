@@ -17,6 +17,7 @@ const leaves_module_1 = require("./leaves/leaves.module");
 const permission_module_1 = require("./permission/permission.module");
 const payslip_module_1 = require("./payslip/payslip.module");
 const staff_module_1 = require("./staff/staff.module");
+const user_module_1 = require("./user/user.module");
 const attendance_entity_1 = require("./attendance/entities/attendance.entity");
 const user_entity_1 = require("./user/user.entity");
 const leave_entity_1 = require("./leaves/entities/leave.entity");
@@ -25,14 +26,15 @@ const leave_request_entity_1 = require("./leaves/entities/leave-request.entity")
 const permission_entity_1 = require("./permission/entities/permission.entity");
 const payslip_entity_1 = require("./payslip/payslip.entity");
 const staff_entity_1 = require("./staff/entities/staff.entity");
-const user_module_1 = require("./user/user.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot({ isGlobal: true }),
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
             schedule_1.ScheduleModule.forRoot(),
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule, user_module_1.UserModule],
@@ -52,6 +54,12 @@ exports.AppModule = AppModule = __decorate([
                     ],
                     ssl: {
                         rejectUnauthorized: false,
+                    },
+                    retryAttempts: 10,
+                    retryDelay: 3000,
+                    keepConnectionAlive: true,
+                    extra: {
+                        connectionTimeoutMillis: 10000,
                     },
                     synchronize: true,
                 }),
