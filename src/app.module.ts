@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
-
+import { AppController } from './app.controller';
 import { AttendanceModule } from './attendance/attendance.module';
 import { AuthModule } from './auth/auth.module';
 import { LeavesModule } from './leaves/leaves.module';
@@ -21,6 +21,7 @@ import { Payslip } from './payslip/payslip.entity';
 import { Staff } from './staff/entities/staff.entity';
 
 @Module({
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
