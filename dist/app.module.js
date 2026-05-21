@@ -11,7 +11,6 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const schedule_1 = require("@nestjs/schedule");
-const app_controller_1 = require("./app.controller");
 const attendance_module_1 = require("./attendance/attendance.module");
 const auth_module_1 = require("./auth/auth.module");
 const leaves_module_1 = require("./leaves/leaves.module");
@@ -32,7 +31,6 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        controllers: [app_controller_1.AppController],
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
