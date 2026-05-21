@@ -4,29 +4,29 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
   @Column()
-  password: string 
+  password!: string;
 
   @Column({
     default: 'employee',
     nullable: false,
   })
-  role: string;
+  role!: string;
 
   @Column({ nullable: true })
-  designation: string;
+  designation!: string;
 
   @Column({ nullable: true })
-  employeeId: string;
+  employeeId!: string;
 
   @Column({ nullable: true })
-  dateOfJoining: string;
+  dateOfJoining!: string;
 }
