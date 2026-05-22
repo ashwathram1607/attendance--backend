@@ -5,4 +5,5 @@ export declare class Permission {
     startTime: string;
     endTime: string;
     reason: string;
+    status: string;
 }

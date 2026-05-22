@@ -1,22 +1,25 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
- 
+
 @Entity()
 export class Permission {
   @PrimaryGeneratedColumn()
-  id: number;
- 
+  id!: number;
+
   @Column()
-  name: string;
- 
+  name!: string;
+
   @Column({ type: 'date' })
-  date: string;
- 
+  date!: string;
+
   @Column()
-  startTime: string;
- 
+  startTime!: string;
+
   @Column()
-  endTime: string;
- 
+  endTime!: string;
+
   @Column()
-  reason: string;
+  reason!: string;
+
+  @Column({ default: 'Pending' })
+  status!: string;
 }

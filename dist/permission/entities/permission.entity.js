@@ -18,6 +18,7 @@ let Permission = class Permission {
     startTime;
     endTime;
     reason;
+    status;
 };
 exports.Permission = Permission;
 __decorate([
@@ -44,6 +45,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Permission.prototype, "reason", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: 'Pending' }),
+    __metadata("design:type", String)
+], Permission.prototype, "status", void 0);
 exports.Permission = Permission = __decorate([
     (0, typeorm_1.Entity)()
 ], Permission);
