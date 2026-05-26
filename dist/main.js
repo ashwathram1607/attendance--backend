@@ -44,6 +44,7 @@ async function bootstrap() {
         origin: [
             'http://localhost:3000',
             'https://attendance-main-93xz.vercel.app',
+            'https://attendance-main-ks3f.vercel.app'
         ],
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
