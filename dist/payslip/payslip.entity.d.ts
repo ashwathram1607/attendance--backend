@@ -1,0 +1,33 @@
+export declare class Payslip {
+    id: number;
+    employeeId: string;
+    employeeName: string;
+    designation: string;
+    panCard: string;
+    dateOfJoining: Date;
+    month: string;
+    year: number;
+    financialYear: string;
+    salary: number;
+    bonus: number;
+    payableDays: number;
+    paidDays: number;
+    basicPay: number;
+    hra: number;
+    conveyance: number;
+    medicalAllowance: number;
+    specialAllowance: number;
+    otherAllowance: number;
+    grossSalary: number;
+    netSalary: number;
+    ytdBasicPay: number;
+    ytdHra: number;
+    ytdConveyance: number;
+    ytdMedicalAllowance: number;
+    ytdSpecialAllowance: number;
+    ytdOtherAllowance: number;
+    ytdBonus: number;
+    ytdNetSalary: number;
+    status: string;
+    createdAt: Date;
+}
