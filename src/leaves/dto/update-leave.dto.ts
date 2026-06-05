@@ -1,4 +1,4 @@
 export class UpdateLeaveDto {
-  status: 'Pending' | 'Approved' | 'Rejected';
+  status: 'Pending' | 'Approved' | 'Rejected' = "Pending";
   reason?: string;
 }

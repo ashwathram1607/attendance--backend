@@ -3,20 +3,20 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class LeaveBalance {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column({ default: 6 })
-  sickLeave: number;
+  sickLeave!: number;
 
   @Column({ default: 6 })
-  personalLeave: number;
+  personalLeave!: number;
 
   @Column({ default: 12 })
-  earnedLeave: number;
+  earnedLeave!: number;
 
   @Column({ default: 0 })
-  maternityLeave: number;
+  maternityLeave!: number;
 }

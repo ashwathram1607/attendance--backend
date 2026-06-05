@@ -3,26 +3,26 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class LeaveRequest {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  leaveType: string;
+  leaveType!: string;
 
   @Column()
-  fromDate: string;
+  fromDate!: string;
 
   @Column()
-  toDate: string;
+  toDate!: string;
 
   @Column()
-  reason: string;
+  reason!: string;
 
   @Column({ default: 'Pending' })
-  status: string;
+  status!: string;
 
   @Column({ type: 'timestamp', nullable: true })
-  submittedAt: Date;
+  submittedAt!: Date;
 }

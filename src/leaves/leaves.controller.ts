@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Put, Param, Body, ParseIntPipe } from '@nestjs/common';
 import { LeavesService } from './leaves.service';
 import { CreateLeaveDto } from './dto/create-leave.dto';
-import { UpdateLeaveDto } from './dto/update-leave.dto';
+import { UpdateLeaveDto} from './dto/update-leave.dto'
 
 @Controller('leaves')
 export class LeavesController {

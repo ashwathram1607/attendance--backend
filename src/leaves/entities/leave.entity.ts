@@ -9,26 +9,26 @@ import {
 @Entity()
 export class Leave {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  leaveType: string;
+  leaveType!: string;
 
   @Column()
-  fromDate: string;
+  fromDate!: string;
 
   @Column()
-  toDate: string;
+  toDate!: string;
 
   @Column()
-  reason: string;
+  reason!: string;
 
   @Column({ default: 'Pending' })
-  status: string;
+  status!: string;
 
   @CreateDateColumn()
-  submittedAt: Date;
+  submittedAt!: Date;
 }
