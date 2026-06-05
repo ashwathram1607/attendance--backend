@@ -30,6 +30,13 @@ export class LeavesController {
   getBalance(@Param('name') name: string) {
     return this.leavesService.getBalance(name);
   }
+  @Put('balance/:name')
+  updateBalance(
+    @Param('name') name: string,
+    @Body() body: any,
+  ) {
+    return this.leavesService.updateBalance(name, body);
+  }
 
   // UPDATE LEAVE STATUS
   @Put(':id')

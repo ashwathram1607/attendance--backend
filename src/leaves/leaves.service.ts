@@ -125,4 +125,16 @@ export class LeavesService {
     Object.assign(leave, updateLeaveDto);
     return this.leaveRequestRepo.save(leave);
   }
+
+  async updateBalance(name: string, dto: any) {
+    const balance = await this.leaveBalanceRepo.findOne({ where: { name } });
+
+    if (!balance) {
+      return { message: 'Employee not found' };
+    }
+
+    Object.assign(balance, dto);
+
+    return this.leaveBalanceRepo.save(balance);
+  }
 }
