@@ -72,7 +72,7 @@ export class AuthService {
       },
     );
 
-    // await this.mailService.sendResetPasswordEmail(user.email, token);
+    await this.mailService.sendResetPasswordEmail(user.email, token);
 
     return { message: 'Reset password email sent' };
   }
