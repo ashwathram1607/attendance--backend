@@ -5,9 +5,10 @@ import { LeavesService } from './leaves.service';
 import { LeavesController } from './leaves.controller';
 import { LeaveRequest } from './entities/leave-request.entity';
 import { LeaveBalance } from './entities/leave-balance.entity';
+import { User } from '../user/user.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([LeaveRequest, LeaveBalance])],
+  imports: [TypeOrmModule.forFeature([LeaveRequest, LeaveBalance,User])],
   controllers: [LeavesController],
   providers: [LeavesService],
 })

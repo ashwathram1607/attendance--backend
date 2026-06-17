@@ -5,6 +5,7 @@ import { LeaveRequest } from './entities/leave-request.entity';
 import { LeaveBalance } from './entities/leave-balance.entity';
 import { CreateLeaveDto } from './dto/create-leave.dto';
 import { UpdateLeaveDto } from './dto/update-leave.dto';
+import { User } from 'src/user/user.entity';
 
 @Injectable()
 export class LeavesService {
@@ -14,11 +15,36 @@ export class LeavesService {
 
     @InjectRepository(LeaveBalance)
     private leaveBalanceRepo: Repository<LeaveBalance>,
+    @InjectRepository(User)
+    private userRepo: Repository<User>,
   ) {}
 
   // GET ALL BALANCES (IMPORTANT)
   async getAllBalances() {
-    return this.leaveBalanceRepo.find();
+    const users = await this.userRepo.find();
+    console.log("TOTAL USERS =", users.length);
+    const balances: LeaveBalance[] = [];
+
+    for (const user of users) {
+      let balance = await this.leaveBalanceRepo.findOne({ where: { name: user.name } });
+
+      if (!balance) {
+        balance = this.leaveBalanceRepo.create({
+          name: user.name,
+          sickLeave: 6,
+          personalLeave: 6,
+          earnedLeave: 12,
+          maternityLeave: 0,
+        });
+
+        await this.leaveBalanceRepo.save(balance);
+      }
+
+      balances.push(balance);
+      console.log("Balances:",balances)
+    }
+
+    return balances;
   }
 
   // GET SINGLE EMPLOYEE BALANCE

@@ -84,11 +84,11 @@ export class AuthService {
         secret: this.configService.get<string>('JWT_RESET_SECRET'),
       });
 
-      console.log('PAYLOAD:', payload); // ✅ MUST PRINT
+      console.log('PAYLOAD:', payload); 
 
       const user = await this.userService.findById(payload.sub);
 
-      console.log('USER:', user); // ✅ MUST PRINT
+      console.log('USER:', user); //  MUST PRINT
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
