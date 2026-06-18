@@ -7,9 +7,8 @@ import {
 } from 'class-validator';
 
 export class CreatePayslipDto {
-  @Type(() => Number) // ✅ FIX
-  @IsNumber()
-  employeeId!: number;
+  @IsString()
+  employeeId!: string;
 
   @IsString()
   employeeName!: string;
@@ -46,11 +45,4 @@ export class CreatePayslipDto {
   @Type(() => Number)
   @IsNumber()
   paidDays!: number;
-
-  @IsOptional()
-  @IsString()
-  financialYear?: string;
-
-  // optional calculated fields
-  @IsOptional() @IsNumber() basicPay?: number;
 }
