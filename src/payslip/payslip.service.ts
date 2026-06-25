@@ -26,6 +26,15 @@ export class PayslipService {
     return m?.toLowerCase().trim();
   }
 
+  private getDaysInMonth(month: string, year: number): number {
+    const monthNumber = this.monthMap[this.normalizeMonth(month)];
+    if (!monthNumber) {
+      throw new BadRequestException('Invalid month');
+    }
+    return new Date(year, monthNumber, 0).getDate();
+  }
+
+
   // ---------- FINANCIAL YEAR ----------
   private getFinancialYear(month: string, year: number): string {
     const m = this.normalizeMonth(month);
@@ -157,6 +166,22 @@ export class PayslipService {
   // 🧾 CREATE
   // =========================================================
   async create(dto: CreatePayslipDto) {
+     const maxDays = this.getDaysInMonth(dto.month, dto.year);
+     if (dto.paidDays > maxDays) {
+      throw new BadRequestException(
+         `Paid Days cannot exceed ${maxDays} for ${dto.month}`,
+      );
+    }
+    if (dto.payableDays > maxDays) {
+      throw new BadRequestException(
+        `Payable Days cannot exceed ${maxDays} for ${dto.month}`,
+      );
+    }
+    if (dto.paidDays > dto.payableDays) {
+        throw new BadRequestException(
+          'Paid Days cannot be greater than Payable Days',
+        );
+      }
     const financialYear = this.getFinancialYear(dto.month, dto.year);
 
     const calc = this.calculate(dto);
@@ -177,7 +202,7 @@ export class PayslipService {
   }
 
   // =========================================================
-  // ✏️ UPDATE (supports arrears fix)
+  //  UPDATE (supports arrears fix)
   // =========================================================
   async update(id: number, dto: Partial<CreatePayslipDto>) {
     const payslip = await this.findOne(id);
@@ -188,6 +213,26 @@ export class PayslipService {
     const financialYear = this.getFinancialYear(month, year);
 
     const merged = { ...payslip, ...dto };
+    const maxDays = this.getDaysInMonth(
+       String(month),
+        Number(year),
+    );
+    if (Number(merged.paidDays) > maxDays) {
+      throw new BadRequestException(
+        `Paid Days cannot exceed ${maxDays} for ${month}`,
+      );
+    }
+    if (Number(merged.payableDays) > maxDays) {
+      throw new BadRequestException(
+         `Payable Days cannot exceed ${maxDays} for ${month}`,
+      );
+    }
+    if (Number(merged.paidDays) > Number(merged.payableDays)) {
+      throw new BadRequestException(
+        'Paid Days cannot be greater than Payable Days',
+      );
+    }
+
 
     const calc = this.calculate(merged as CreatePayslipDto);
 
