@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LeaveRequest } from './entities/leave-request.entity';
@@ -71,6 +71,20 @@ export class LeavesService {
     const { name } = createLeaveDto;
 
     const balance = await this.getBalance(name);
+    const existingRequest = await this.leaveRequestRepo.findOne({
+       where: {
+        name: createLeaveDto.name,
+         leaveType: createLeaveDto.leaveType,
+         fromDate: createLeaveDto.fromDate,
+          toDate: createLeaveDto.toDate,
+          status: 'Pending',
+       },
+      });
+      if (existingRequest) {
+         throw new BadRequestException(
+          'Leave request already submitted'
+         );
+        }
 
     const leave = this.leaveRequestRepo.create({
       ...createLeaveDto,
