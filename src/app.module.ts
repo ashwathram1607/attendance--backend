@@ -18,7 +18,8 @@ import { LeaveRequest } from './leaves/entities/leave-request.entity';
 import { Permission } from './permission/entities/permission.entity';
 import { Payslip } from './payslip/payslip.entity';
 import { Staff } from './staff/entities/staff.entity';
-
+import { HolidayModule } from './holiday/holiday.module';
+import { Holiday } from './holiday/holiday.entity';
 @Module({
 
   imports: [
@@ -46,6 +47,7 @@ import { Staff } from './staff/entities/staff.entity';
           Permission,
           Payslip,
           Staff,
+          Holiday,
         ],
 
         ssl: {
@@ -71,6 +73,7 @@ import { Staff } from './staff/entities/staff.entity';
     PayslipModule,
     StaffModule,
     UserModule,
+    HolidayModule,
   ],
 })
 export class AppModule {}
